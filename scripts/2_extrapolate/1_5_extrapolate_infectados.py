@@ -3,8 +3,8 @@ import os
 import pandas as pd
 
 DATA_FOLDER = f'{os.getcwd()}/data'
-INFECTADOS_PATH = f'{DATA_FOLDER}/infectados.csv'
-INFECTADOS_EXTRAPOLADO_PATH = f'{DATA_FOLDER}/infectados_extrapolado.csv'
+INFECTADOS_PATH = f'{DATA_FOLDER}/preprocessed/infectados.csv'
+INFECTADOS_EXTRAPOLADO_PATH = f'{DATA_FOLDER}/extrapolated/infectados_extrapolado.csv'
 MONTHS = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGOS', 'SEP', 'OCT', 'NOV', 'DIC']
 pd.set_option('display.max_columns', None)
 try:
@@ -15,7 +15,6 @@ except FileNotFoundError as e:
 
 infectados_no_extrapolado['DIC'] = infectados_no_extrapolado['DIC'] + infectados_no_extrapolado['otros']
 infectados_no_extrapolado.drop(columns=['otros'], inplace=True)
-print(infectados_no_extrapolado)
 year_index = infectados_no_extrapolado.ANO.copy(deep=True)
 df = pd.DataFrame(columns=MONTHS, index=infectados_no_extrapolado.index)
 
@@ -28,5 +27,4 @@ for index, row in df.iterrows():
         elif index_col > 0:
             df[month][index] = df[MONTHS[index_col-1]][index] + infectados_no_extrapolado.reset_index(drop=True)[month][index]
 df.set_index(year_index, inplace=True)
-# df.to_csv(INFECTADOS_EXTRAPOLADO_PATH)
-print(df)
+df.to_csv(INFECTADOS_EXTRAPOLADO_PATH)

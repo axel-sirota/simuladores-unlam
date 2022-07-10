@@ -3,8 +3,8 @@ import os
 import pandas as pd
 
 DATA_FOLDER = f'{os.getcwd()}/data'
-HABS_PATH = f'{DATA_FOLDER}/habitantes.csv'
-HABS_EXTRAPOLADO_PATH = f'{DATA_FOLDER}/habitantes_extrapolado.csv'
+HABS_PATH = f'{DATA_FOLDER}/preprocessed/habitantes.csv'
+HABS_EXTRAPOLADO_PATH = f'{DATA_FOLDER}/extrapolated/habitantes_extrapolado.csv'
 MONTHS = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGOS', 'SEP', 'OCT', 'NOV', 'DIC']
 pd.set_option('display.max_columns', None)
 try:
