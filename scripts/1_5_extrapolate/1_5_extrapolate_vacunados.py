@@ -2,10 +2,12 @@ import os
 
 import pandas as pd
 
-DATA_FOLDER = f'{os.getcwd()}/data'
+from config import get_project_root
+
+DATA_FOLDER = f'{get_project_root()}/data'
 VACUNADOS_PATH = f'{DATA_FOLDER}/preprocessed/vacunados.csv'
 VACUNADOS_EXTRAPOLADO_PATH = f'{DATA_FOLDER}/extrapolated/vacunados_extrapolado.csv'
-HABS_PATH = f'{DATA_FOLDER}/habitantes.csv'
+HABS_PATH = f'{DATA_FOLDER}/preprocessed/habitantes.csv'
 MONTHS = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGOS', 'SEP', 'OCT', 'NOV', 'DIC']
 pd.set_option('display.max_columns', None)
 try:

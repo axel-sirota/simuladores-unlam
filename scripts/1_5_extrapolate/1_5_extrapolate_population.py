@@ -2,7 +2,9 @@ import os
 
 import pandas as pd
 
-DATA_FOLDER = f'{os.getcwd()}/data'
+from config import get_project_root
+
+DATA_FOLDER = f'{get_project_root()}/data'
 HABS_PATH = f'{DATA_FOLDER}/preprocessed/habitantes.csv'
 HABS_EXTRAPOLADO_PATH = f'{DATA_FOLDER}/extrapolated/habitantes_extrapolado.csv'
 MONTHS = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGOS', 'SEP', 'OCT', 'NOV', 'DIC']
