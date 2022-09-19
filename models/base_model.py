@@ -1,28 +1,30 @@
 import numpy as np
 from matplotlib import pyplot as plt
-from scipy.integrate import odeint
+from scipy.integrate import solve_ivp
 
 
 class BaseModel:
 
-    def __init__(self, initial_params, initial_population_size, generations):
+    def __init__(self, initial_params, initial_population_size, tf):
         assert len(initial_params) == 4
+        self.tf = tf
         self.initial_susceptible, self.initial_sick, self.initial_recovered, self.initial_immune = initial_params
         self.initial_params = initial_params
-        self.generations = generations
         self.initial_population_size = initial_population_size
 
-    def diff_equations(self, population_curves, generation):
+    def diff_equations(self, generation, population_curves):
         raise NotImplemented
 
     def solve(self):
-        solution = odeint(self.diff_equations, self.initial_params, self.generations)
-        s, inf, r, i = solution.T
-        self.susceptible = s
-        self.infectious = inf
-        self.removed = r
-        self.inmmune = i
-        return s, inf, r, i
+        solution = solve_ivp(fun=self.diff_equations, y0=self.initial_params, t_span=(0, self.tf))
+        self.evaluated_times = solution.ts
+        self.y = solution.y
+        print(self.y)
+        # self.susceptible = s
+        # self.infectious = inf
+        # self.removed = r
+        # self.inmmune = i
+        # return s, inf, r, i
 
     def plotdata(self):
         # plot the data
@@ -31,7 +33,7 @@ class BaseModel:
               fig.add_subplot(223),
               fig.add_subplot(122)]
 
-        ax[0].plot(self.generations, self.susceptible, lw=4, label='Fraction Susceptible')
+        ax[0].plot(self.evaluated_times, self.susceptible, lw=4, label='Fraction Susceptible')
         ax[0].plot(self.generations, self.infectious, lw=4, label='Fraction Infective')
         ax[0].plot(self.generations, self.removed, lw=4, label='Recovered')
         ax[0].plot(self.generations, 1-self.susceptible-self.infectious-self.removed, lw=4, label='Inmmune')

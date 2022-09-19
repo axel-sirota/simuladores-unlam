@@ -10,7 +10,7 @@ class SIR(BaseModel):
         super().__init__(extended_initial_params, initial_population_size, generations)
 
     # From https://colab.research.google.com/github/jckantor/CBE30338/blob/master/docs/03.09-COVID-19.ipynb
-    def diff_equations(self, population_curves, generation):
+    def diff_equations(self, generation, population_curves):
         s, inf, r, inm = population_curves
         dsdt = -self.beta * s * inf
         didt = self.beta * s * inf - self.gamma * inf
