@@ -3,7 +3,7 @@ import os
 import pandas as pd
 
 from config import get_project_root
-enfermedad='SARAMPION'
+enfermedad='PAROTIDITIS'
 DATA_FOLDER = f'{get_project_root()}/data'
 VACUNADOS_PATH = f'{DATA_FOLDER}/preprocessed/vacunados_{enfermedad.lower()}.csv'
 VACUNADOS_EXTRAPOLADO_PATH = f'{DATA_FOLDER}/extrapolated/vacunados_{enfermedad.lower()}_extrapolado.csv'
