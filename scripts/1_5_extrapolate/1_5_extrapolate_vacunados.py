@@ -3,10 +3,10 @@ import os
 import pandas as pd
 
 from config import get_project_root
-
+enfermedad='SARAMPION'
 DATA_FOLDER = f'{get_project_root()}/data'
-VACUNADOS_PATH = f'{DATA_FOLDER}/preprocessed/vacunados.csv'
-VACUNADOS_EXTRAPOLADO_PATH = f'{DATA_FOLDER}/extrapolated/vacunados_extrapolado.csv'
+VACUNADOS_PATH = f'{DATA_FOLDER}/preprocessed/vacunados_{enfermedad.lower()}.csv'
+VACUNADOS_EXTRAPOLADO_PATH = f'{DATA_FOLDER}/extrapolated/vacunados_{enfermedad.lower()}_extrapolado.csv'
 HABS_PATH = f'{DATA_FOLDER}/preprocessed/habitantes.csv'
 MONTHS = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGOS', 'SEP', 'OCT', 'NOV', 'DIC']
 pd.set_option('display.max_columns', None)

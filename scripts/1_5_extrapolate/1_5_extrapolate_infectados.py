@@ -4,9 +4,10 @@ import pandas as pd
 
 from config import get_project_root
 
+enfermedad='SARAMPION'
 DATA_FOLDER = f'{get_project_root()}/data'
-INFECTADOS_PATH = f'{DATA_FOLDER}/preprocessed/infectados.csv'
-INFECTADOS_EXTRAPOLADO_PATH = f'{DATA_FOLDER}/extrapolated/infectados_extrapolado.csv'
+INFECTADOS_PATH = f'{DATA_FOLDER}/preprocessed/infectados_{enfermedad.lower()}.csv'
+INFECTADOS_EXTRAPOLADO_PATH = f'{DATA_FOLDER}/extrapolated/infectados_{enfermedad.lower()}_extrapolado.csv'
 MONTHS = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGOS', 'SEP', 'OCT', 'NOV', 'DIC']
 pd.set_option('display.max_columns', None)
 try:
