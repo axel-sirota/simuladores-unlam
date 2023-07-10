@@ -3,7 +3,7 @@ import os
 import pandas as pd
 
 from config import get_project_root
-enfermedad='PAROTIDITIS'
+enfermedad='TUBERCULOSIS'
 DATA_FOLDER = f'{get_project_root()}/data'
 VACUNADOS_PATH = f'{DATA_FOLDER}/preprocessed/vacunados_{enfermedad.lower()}.csv'
 VACUNADOS_EXTRAPOLADO_PATH = f'{DATA_FOLDER}/extrapolated/vacunados_{enfermedad.lower()}_extrapolado.csv'
@@ -23,7 +23,7 @@ df = pd.DataFrame(columns=MONTHS, index=habitantes_no_extrapolado.index)
 for index, row in df.iterrows():
     for index_col, month in enumerate(MONTHS):
         if index == 0 and index_col == 0:
-            df[month][index] = vacunados_no_extrapolado.reset_index(drop=True)[month][index] + initial_population
+            df[month][index] = vacunados_no_extrapolado.reset_index(drop=True)[month][index]  # + initial_population
         elif index_col == 0:
             df['ENE'][index] = df['DIC'][index-1] + vacunados_no_extrapolado['ENE'][index]
         elif index_col > 0:
